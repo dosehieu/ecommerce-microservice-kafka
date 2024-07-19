@@ -1,0 +1,26 @@
+﻿version: '3'
+services:
+  zoo:
+    image: confluentinc/cp-zookeeper:7.3.2
+    hostname: zoo
+    container_name: zoo
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SERVER_ID: 1
+      ZOOKEEPER_SERVERS: zoo:2888:3888
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zoo:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zoo
