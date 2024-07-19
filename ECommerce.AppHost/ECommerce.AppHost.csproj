@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>a6d56480-2cd4-4b11-af7f-a01dfd0364a8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Confluent.Kafka" Version="8.0.2" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
+    <PackageReference Include="Aspire.Hosting.Kafka" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ECommerce.Client\ECommerce.Client.csproj" />
+    <ProjectReference Include="..\ECommerce.OrderService\ECommerce.Services.OrderService.csproj" />
+    <ProjectReference Include="..\ECommerce.ProductService\ECommerce.Services.ProductService.csproj" />
+  </ItemGroup>
+
+</Project>
