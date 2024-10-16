@@ -1,7 +1,7 @@
 ﻿using Confluent.Kafka;
+using Ecommerce.Common;
 using Ecommerce.Model;
 using ECommerce.OrderService.Data;
-using ECommerce.Services.OrderService.Kafka;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
@@ -16,6 +16,7 @@ namespace ECommerce.OrderService.Controllers
         public async Task<ActionResult<OrderModel>> PostOrder(OrderModel order)
         {
             order.OrderDate = DateTime.Now;
+            order.Status = "Pending";
             context.Orders.Add(order);
             await context.SaveChangesAsync();
 
@@ -26,11 +27,7 @@ namespace ECommerce.OrderService.Controllers
                 Quantity = order.Quantity
             };
 
-            await producer.ProduceAsync("order-topic", new Message<string, string>
-            {
-                Key = order.Id.ToString(),
-                Value = JsonSerializer.Serialize(orderMessage)
-            });
+            await producer.ProduceAsync("order-created", orderMessage);
 
             return order;
         }

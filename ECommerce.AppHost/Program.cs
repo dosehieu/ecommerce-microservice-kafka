@@ -9,4 +9,7 @@ builder.AddProject<Projects.ECommerce_Client>("webfrontend")
 
 
 
+builder.AddProject<Projects.Ecommerce_Services_PaymentService>("apiservice-payment");
+
+
 builder.Build().Run();

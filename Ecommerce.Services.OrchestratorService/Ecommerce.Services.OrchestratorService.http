@@ -1,0 +1,6 @@
+@Ecommerce.Services.OrchestratorService_HostAddress = http://localhost:5072
+
+GET {{Ecommerce.Services.OrchestratorService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
